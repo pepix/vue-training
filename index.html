@@ -3,10 +3,23 @@
 <head>
     <meta charset="utf-8">
     <title>Document</title>
+    <link rel="stylesheet" href="main.css">
 </head>
 
 <body>
     <div id="app">
+        <form>
+            <span class="error" v-show="!message">
+                You must enter a message
+            </span>
+
+            <textarea v-model="message"></textarea>
+
+            <button type="submit" v-show="message">
+                Send message
+            </button>
+        </form>
+
         <h1>{{ message }}</h1>
 
         <input v-model="message">
@@ -22,7 +35,7 @@
         new Vue({
             el: '#app',
             data: {
-                message : 'Hello World!!'
+                message : ''
             }
         });
     </script>

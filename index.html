@@ -3,11 +3,10 @@
 <head>
     <meta charset="utf-8">
     <title>Document</title>
-    <link rel="stylesheet" href="main.css">
 </head>
 
 <body>
-    <div id="app">
+    <div id="app-1">
         <form>
             <span class="error" v-show="!message">
                 You must enter a message
@@ -23,19 +22,41 @@
         <h1>{{ message }}</h1>
 
         <input v-model="message">
+    </div>
 
-        <pre>
-            {{ $data | json }}
-        </pre>
+    <div id="app-2">
+        <span v-bind:title="message">
+            Hover your mouse over me for a few seconds
+            to see my dinamically bound title!
+        </span>
+    </div>
+
+    <div id="app-3">
+        <span v-if="seen">app3.seen is TRUE</span>
+        <span v-else="seen">app3.seen is FALSE</span>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.min.js"></script>
 
     <script>
-        new Vue({
-            el: '#app',
+        var app1 = new Vue({
+            el: '#app-1',
             data: {
                 message : ''
+            }
+        });
+
+        var app2 = new Vue({
+            el: "#app-2",
+            data: {
+                message: "You loaded this page on " + new Date().toLocaleString()
+            }
+        });
+
+        var app3 = new Vue({
+            el: "#app-3",
+            data: {
+                seen: false
             }
         });
     </script>
